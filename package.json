@@ -1,0 +1,33 @@
+{
+  "bugs": {
+    "url": "https://github.com/sam-niconi/context-log/issues"
+  },
+  "contributors": [
+    {
+      "name": "Sam Niconi",
+      "email": "samniconi@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "fs": "0.0.2",
+    "log4js": "^0.6.38",
+    "mkdirp": "^0.5.1",
+    "on-finished": "^2.3.0",
+    "path": "^0.12.7",
+    "stack-trace": "0.0.9",
+    "uuid": "^2.0.2"
+  },
+  "description": "http logging that maintains context-id and uses property dictionary. Built on log4js",
+  "devDependencies": {},
+  "main": "index.js",
+  "homepage": "https://github.com/sam-niconi/context-log",
+  "license": "MIT",
+  "name": "context-log",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sam-niconi/context-log.git"
+  },
+  "scripts": {},
+  "version": "0.0.0"
+}
