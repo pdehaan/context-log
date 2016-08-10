@@ -354,7 +354,7 @@ function writeToLog4js(level, properties){
  */
 function addToCache(level, properties){
     // Is caching enabled
-    if (_options && _cacheMaxSize > 0 && _options.contextIdProperty){
+    if (typeof properties === 'object' && _options && _cacheMaxSize > 0 && _options.contextIdProperty){
         // Get the context id
         var contextId = properties[_options.contextIdProperty];
         // Only interested in Express requests with context Id
@@ -427,6 +427,8 @@ function getHttpLogProperties(req, res, properties){
  * @returns {string}
  */
 function generateLogLine(properties){
+    if (typeof properties === 'string')
+        return "\"" + properties + "\"";
     var text = "";
     for (var key in properties){
         var value = properties[key];
@@ -730,7 +732,7 @@ function setupLog4js(callingDir, callback){
  * @returns {*}
  */
 function addContextIdProperty(properties, contextId){
-    if (_options && _options.contextIdProperty){
+    if (typeof properties === 'object' && _options && _options.contextIdProperty){
         properties[_options.contextIdProperty] = contextId;
     }
     return properties;
