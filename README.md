@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
 ```
 
 ##### log/MyApp.log
-```js
+```
 2016-08-09T18:42:22.022+0100, MyApp, INFO action="Http request", FCID=2dd85d0b-59f0-4f9e-9a9b-ed8367a248a9, url=/, httpMethod=GET, MyApp_httpVersion=1.1, hostSrc=::1
 2016-08-09T18:42:22.027+0100, MyApp, INFO action="Hello world", FCID=2dd85d0b-59f0-4f9e-9a9b-ed8367a248a9
 2016-08-09T18:42:22.430+0100, MyApp, INFO action="Http response", FCID=2dd85d0b-59f0-4f9e-9a9b-ed8367a248a9, httpCode=304, duration=408.88
@@ -59,7 +59,7 @@ that can't be found in the dictionary.
 
 With `{appName:"MyApp"}`, a log entry with `msg` and `flavour` properties 
 would be created as:
-```js
+```
 2016-08-04T17:30:44.863+0100, MyApp, INFO msg="Cheese is tasty", MyApp_flavour="Cheddar"
 ```
 Defaults to `Application`.
