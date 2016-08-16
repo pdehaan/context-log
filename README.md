@@ -46,6 +46,35 @@ This is either an object with the properties listed below, or a string path to a
 
 context-log accepts these properties in the options object.
 
+Example
+```js
+{
+  "headerName" : "flow-context"
+  ,"appName" : "MyApp"
+  ,"logLevel" : "info"
+  ,"cacheMaxSize":100
+  ,"propertyDictionary": "dictionary.txt"
+  ,"logDir" : "./log"
+  ,"logMaxSize":1e6
+  ,"requestProperties":{
+    "action":"Http request"
+    ,"FCID":"contextId"
+    ,"url":"url"
+    ,"httpMethod":"method"
+    ,"httpVersion":"version"
+    ,"hostSrc":"rqstAddr"
+    ,"contentType":["rqstHeader", "content-type"]
+  }
+  ,"responseProperties":{
+    "action":"Http response"
+    ,"FCID":"contextId"
+    ,"httpCode":"statusCode"
+    ,"duration":["respTime", 2]
+    ,"bytes":["respHeader", "content-length"]
+  }
+}
+```
+
 ##### headerName
 
 Each incoming request has a unique identifier generated for it, which is 
@@ -137,6 +166,31 @@ Defines the dictionary of property names to be used by context-log. Each log ent
 May be either an array, or the path to a file containing the dictionary.
 i.e. `["msg", "action", "code"]` or `"dictionary.txt"` where the file
 containes one item per line.
+
+Example of file contents:
+```
+action
+alert
+api
+apiGroup
+bytes
+contentType
+count
+duration
+event
+FCID
+frequency
+httpCode
+httpCodeText
+httpMethod
+host
+ip
+json
+msg
+port
+result
+url
+```
 
 Defaults to `["contextId","url","method","version","userAgent","rqstAddr","contentType","statusCode","respTime","contentLength","frequency","action","msg"]`.
 
