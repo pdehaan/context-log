@@ -42,6 +42,8 @@ Create a new context-log logger middleware function using the given `options`.
 
 #### Options
 
+This is either an object with the properties listed below, or a string path to a config file containing the same elements in json form.
+
 context-log accepts these properties in the options object.
 
 ##### headerName
@@ -63,6 +65,13 @@ would be created as:
 2016-08-04T17:30:44.863+0100, MyApp, INFO msg="Cheese is tasty", MyApp_flavour="Cheddar"
 ```
 Defaults to `Application`.
+
+##### logLevel
+
+The log level initially used by the library. This is updateable dynamically using setLogLevel() and getLogLevel().
+Possible values : `trace`, `debug`, `info`, `warn` and `error`.
+
+Defaults to `info`.
 
 ##### logDir
 

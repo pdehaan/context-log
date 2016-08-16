@@ -89,6 +89,7 @@ function getLogger(req){
  * options = {
  *      headerName : "context-id"
  *      ,appName : "MyApp"
+ *      ,logLevel : "info"
  *      ,logConfig: {
  *          file: "./log4js_configuration.json"
  *          ,category: "logger"
@@ -129,6 +130,12 @@ function setup(options) {
     _options = options || {};
 
     var callingDir = getCallingDir();
+    // If string, treat as path to .json file
+    if (typeof _options  === 'string'){
+        var optionsPath = path.join(callingDir, _options);
+        _options = require(optionsPath);
+    }
+
     configure(callingDir);
 
     // Middleware method
@@ -261,6 +268,13 @@ function logResponse(req, res){
  */
 function configure(callingDir){
     _cacheMaxSize = _options.cacheMaxSize || 0;
+    if (_options.logLevel){
+        if (_levels.hasOwnProperty(_options.logLevel))
+            _logLevel = _levels[_options.logLevel];
+        else
+            addLogEntry(_levels.warn, "Unrecognised log level: "+_options.logLevel);
+    }
+
     setupLog4js(callingDir, function(){
         // If a file path was provided for the dictionary, then load that now
         loadDictionaryFromFile(function() {
@@ -703,7 +717,7 @@ function setupLog4js(callingDir, callback){
                             type: 'console'
                             , layout: {
                                 type: "pattern",
-                                pattern: "%d{yyyy-MM-ddThh:mm:ss.SSSO}, %c, %p %m"
+                                pattern: "%d{yyyy-MM-ddThh:mm:ss.SSSO}, %c, %p, %m"
                             }
                         },
                         {
@@ -713,7 +727,7 @@ function setupLog4js(callingDir, callback){
                             ,maxLogSize: getLogMaxSize()
                             , layout: {
                                 type: "pattern",
-                                pattern: "%d{yyyy-MM-ddThh:mm:ss.SSSO}, %c, %p %m"
+                                pattern: "%d{yyyy-MM-ddThh:mm:ss.SSSO}, %c, %p, %m"
                             }
                         }
                     ]
