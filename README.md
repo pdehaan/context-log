@@ -50,8 +50,8 @@ context-log accepts these properties in the options object.
 
 Each incoming request has a unique identifier generated for it, which is 
 used on all subsequent log entries that result from handling the request.
-If this option is provided, then its value will be used for the identifier 
-instead of generating one. This allows for coupled components to track transactions
+If this option is provided, then the requests header value of the given name will be used for the context id,
+instead of the conect-log library generating one. This allows for coupled components to track transactions
 across the entire system.
 
 ##### appName
